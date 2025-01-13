@@ -16,6 +16,20 @@ INSERT INTO servicio_adicional (nombre, descripcion, tarifa, reserva_id) VALUES
 ('Cena Romántica', NULL, 75.00, NULL),
 ('Tour Guiado', 'Excursión a sitios turísticos', 30.00, NULL);
 
+DROP TABLE IF EXISTS reserva_servicio_adicional;
+CREATE TABLE reserva_servicio_adicional (
+    reserva_servicio_adicional_id INT AUTO_INCREMENT NOT NULL,
+    reserva_id INT NOT NULL,
+    servicio_adicional_id INT NOT NULL,
+    PRIMARY KEY (reserva_servicio_adicional_id)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+INSERT INTO reserva_servicio_adicional (reserva_id, servicio_adicional_id) VALUES
+(1, 1),
+(2, 2),
+(3, 3),
+(4, 4),
+(1, 3);
+
 --  Tabla: Alejandro Juarez --
 
 
