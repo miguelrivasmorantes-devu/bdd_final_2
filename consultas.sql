@@ -45,16 +45,38 @@ BEGIN
 
 -- Consultas --
 -- Interseccion --
+SELECT * FROM servicio_adicional WHERE tarifa < 45
+INTERSECT
+SELECT * FROM servicio_adicional WHERE descripcion IS NOT NULL;
 
 -- Union --
+SELECT * FROM servicio_adicional WHERE tarifa < 45
+UNION
+SELECT * FROM servicio_adicional WHERE descripcion IS NOT NULL;
 
 -- Diferencia --
+SELECT * FROM servicio_adicional WHERE tarifa < 70
+EXCEPT
+SELECT * FROM servicio_adicional WHERE descripcion IS NOT NULL;
+
 
 -- Agregacion --
+SELECT COUNT(*) AS total_servicios, AVG(tarifa) AS tarifa_promedio
+FROM servicio_adicional
+WHERE nombre LIKE '%T%';
 
 -- Reunion Natural --
+SELECT *
+FROM reserva
+NATURAL JOIN reserva_servicio_adicional
+NATURAL JOIN servicio_adicional;
+
 
 -- Reunion Natural por derecha --
+SELECT *
+FROM reserva_servicio_adicional
+RIGHT JOIN reserva ON reserva_servicio_adicional.reserva_id = reserva.reserva_id
+RIGHT JOIN servicio_adicional ON reserva_servicio_adicional.servicio_adicional_id = servicio_adicional.servicio_adicional_id;
 
 
 -- Reunion Natural por izquierda --
